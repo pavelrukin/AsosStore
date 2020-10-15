@@ -44,14 +44,14 @@ init {
     private fun handledProductList(response: Response<ProductResponse>): Resource<ProductResponse>? {
         if (response.isSuccessful) {
             response.body()?.let { resultResponse ->
-          //      pages++
+
                 if (productListResponse == null) {
                     productListResponse = resultResponse
 
                 } else {
-                    val oldMovies = productListResponse?.products
-                    val newMovies = resultResponse.products
-                    oldMovies?.addAll(newMovies)
+                    val old = productListResponse?.products
+                    val new = resultResponse.products
+                    old?.addAll(new)
                 }
                 return Resource.Success(productListResponse ?: resultResponse)
             }

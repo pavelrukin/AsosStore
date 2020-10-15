@@ -16,6 +16,7 @@
         <action
             android:id="@+id/action_mainFragment_to_basketFragment"
             app:destination="@id/basketFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -28,6 +29,11 @@
         <action
             android:id="@+id/action_detailFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <argument
+            android:name="product_id"
+            app:argType="com.pavelrukin.asosstore.model.product.Product" />
+
+
     </fragment>
     <fragment
         android:id="@+id/basketFragment"

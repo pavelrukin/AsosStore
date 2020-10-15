@@ -11,8 +11,8 @@ import com.pavelrukin.asosstore.R
 import com.pavelrukin.asosstore.databinding.ItemListProductBinding
 import com.pavelrukin.asosstore.model.product.Product
 
-class ProductAdapter(private val clickListener: (Product) -> Unit) :
-    RecyclerView.Adapter<ProductAdapter.MovieViewHolder>() {
+class MainAdapter(private val clickListener: (Product) -> Unit) :
+    RecyclerView.Adapter<MainAdapter.MovieViewHolder>() {
 
 
     private val diffUtilCallBack = object : DiffUtil.ItemCallback<Product>() {

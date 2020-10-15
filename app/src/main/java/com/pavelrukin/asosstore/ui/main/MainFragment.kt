@@ -1,22 +1,18 @@
 package com.pavelrukin.asosstore.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.pavelrukin.asosstore.R
 import com.pavelrukin.asosstore.databinding.MainFragmentBinding
 import com.pavelrukin.asosstore.model.product.Product
-import com.pavelrukin.asosstore.utils.Constants.Companion.QUERY_PAGE_SIZE
 import com.pavelrukin.asosstore.utils.Resource
 import kotlinx.android.synthetic.main.main_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -26,7 +22,7 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by viewModel()
     private lateinit var binding:MainFragmentBinding
 
-    lateinit var productAdapter: ProductAdapter
+    lateinit var mainAdapter: MainAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,15 +42,21 @@ class MainFragment : Fragment() {
 
     }
     private fun initRecyclerView() {
-        productAdapter = ProductAdapter { product:Product -> toDetailFragment(product) }
+        mainAdapter = MainAdapter { product:Product -> toDetailFragment(product) }
         rv_product.apply {
-            adapter = productAdapter
+            adapter = mainAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }
 
     private fun toDetailFragment(product: Product) {
-        TODO("Not yet implemented")
+            val bundle = Bundle().apply {
+                putParcelable("product_id",product)
+            }
+            findNavController().navigate(
+                R.id.action_mainFragment_to_detailFragment,
+                bundle
+            )
     }
 
     fun fetchList() {
@@ -64,7 +66,7 @@ class MainFragment : Fragment() {
                     is Resource.Success -> {
                         hideProgressBar()
                         response.data?.let { result ->
-                            productAdapter.differ.submitList(result.products.toList())
+                            mainAdapter.differ.submitList(result.products.toList())
                         }
                     }
                     is Resource.Error -> {

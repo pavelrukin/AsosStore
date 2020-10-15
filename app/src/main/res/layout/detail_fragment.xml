@@ -4,8 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+<variable
+    name="product_detail"
+    type="com.pavelrukin.asosstore.model.detail_product.DetailResponse" />
     </data>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,7 +43,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:text=" "
+            android:text="@{product_detail.name}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,13 +58,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text=" "
+            android:text="@{product_detail.price.current.text}"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
             tools:text="pirce 35$" />
-
+        <!--android:text="@{product_detail.info.aboutMe}"-->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_about_me"
             android:layout_width="wrap_content"
@@ -68,7 +74,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text=" "
+
+
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -76,7 +83,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_care_info"
             tools:text="Suede and leather upper
             Sole: 100% Rubber, Upper: 100% Real Leather." />
-
+<!--    android:text="@{product_detail.info.careInfo}"     -->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_care_info"
             android:layout_width="wrap_content"
@@ -84,7 +91,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text=" "
+
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.482"
@@ -92,5 +99,12 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_price"
             tools:text=" Wipe clean with a soft dry cloth" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_detail_product"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_about_me" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
 </layout>
