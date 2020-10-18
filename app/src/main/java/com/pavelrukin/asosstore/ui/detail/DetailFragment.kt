@@ -1,7 +1,6 @@
 package com.pavelrukin.asosstore.ui.detail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.pavelrukin.asosstore.R
 import com.pavelrukin.asosstore.databinding.DetailFragmentBinding
 import com.pavelrukin.asosstore.model.detail_product.DetailResponse
-import com.pavelrukin.asosstore.ui.main.MainAdapter
+
 import com.pavelrukin.asosstore.utils.Constants.Companion.IMG_URL
 import com.pavelrukin.asosstore.utils.Resource
 import com.pavelrukin.asosstore.utils.extensions.replaceHtmlTag
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.detail_fragment.*
-import kotlinx.android.synthetic.main.main_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -36,8 +33,9 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.detail_fragment, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
 
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -47,18 +45,24 @@ class DetailFragment : Fragment() {
         viewModel.getProductList(args.productId.id)
         fetchDetailProduct()
         detaiAdapter = DetailAdapter()
+
+
     }
 
     fun initView(result: DetailResponse) {
         Picasso.get().load(IMG_URL + args.productId.imageUrl).into(binding.imageView2)
         binding.productDetail = result
-        binding.tvAboutMe.text = result.info.aboutMe.replaceHtmlTag()
-        binding.tvCareInfo.text = result.info.careInfo.replaceHtmlTag()
+        binding.tvAboutMe.text = result.info?.aboutMe?.replaceHtmlTag()
+        binding.tvCareInfo.text = result.info?.careInfo?.replaceHtmlTag()
 
         binding.rvDetailProduct.apply {
             adapter = detaiAdapter
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
+
+   /*     binding.fabAddProduct.setOnClickListener {
+            viewModel.saveProduct(result)
+        }*/
 
     }
 
@@ -69,7 +73,7 @@ class DetailFragment : Fragment() {
                     //  hideProgressBar()
                     response.data?.let { result ->
                         initView(result)
-                        detaiAdapter.differ.submitList(result.media.images)
+                        detaiAdapter.differ.submitList(result.media?.images)
                     }
                 }
                 is Resource.Error -> {

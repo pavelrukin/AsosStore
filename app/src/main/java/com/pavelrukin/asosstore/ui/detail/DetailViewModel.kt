@@ -1,10 +1,12 @@
 package com.pavelrukin.asosstore.ui.detail
 
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.pavelrukin.asosstore.AsosStoreApp
 import com.pavelrukin.asosstore.model.detail_product.DetailResponse
+import com.pavelrukin.asosstore.model.product.ProductResponse
 import com.pavelrukin.asosstore.repository.ProductRepository
 import com.pavelrukin.asosstore.utils.Resource
 import com.pavelrukin.asosstore.utils.extensions.isConnected
@@ -17,8 +19,19 @@ class DetailViewModel(private val repository: ProductRepository, app: AsosStoreA
 
     val detailProduct: MutableLiveData<Resource<DetailResponse>> = MutableLiveData()
     var detailProductResponse: DetailResponse? = null
+fun saveProduct() = saveProduct(product = DetailResponse())
+    fun saveProduct(product: DetailResponse) = viewModelScope.launch {
+        repository.upsert(product)
+    //    isFavorite.value = true
+        Log.d("DetailViewModel", "saveProduct: $product")
+    }
 
+    fun getSavedProduct() = repository.getSavedProduct()
 
+    fun deleteProduct(product: DetailResponse) = viewModelScope.launch {
+        repository.deleteProduct(product)
+     //   isFavorite.value = false
+    }
     fun getProductList(id: Int) = viewModelScope.launch {
         detailProduct.postValue(Resource.Loading())
         try {
@@ -45,12 +58,7 @@ class DetailViewModel(private val repository: ProductRepository, app: AsosStoreA
 
                 if (detailProductResponse == null) {
                     detailProductResponse = resultResponse
-
-                }/* else {
-                    val old = detailProductResponse?.products
-                    val new = resultResponse.products
-                    old?.addAll(new)
-                }*/
+                }
                 return Resource.Success(detailProductResponse ?: resultResponse)
             }
         }

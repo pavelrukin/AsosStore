@@ -32,13 +32,14 @@ data class Product(
     @SerializedName("name")
     val name: String, // Under Armour HOVR Start sneakers in black
     @SerializedName("price")
-    val price:  @RawValue Price,
+    var price:  @RawValue Price?=null,
     @SerializedName("productCode")
     val productCode: Int, // 1739784
     @SerializedName("productType")
     val productType: String, // Product
     @SerializedName("url")
     val url: String, // under-armour/under-armour-hovr-start-sneakers-in-black/prd/20669475?colourwayid=60077844
-    @SerializedName("videoUrl")
-    val videoUrl:  @RawValue Any // null
+ /*   @SerializedName("videoUrl")
+    val videoUrl:  @RawValue Any?=null // null*/
 ): Parcelable
+//RawValue

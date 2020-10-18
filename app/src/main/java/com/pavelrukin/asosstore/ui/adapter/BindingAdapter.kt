@@ -8,15 +8,16 @@ import com.pavelrukin.asosstore.R
 import com.pavelrukin.asosstore.utils.Constants.Companion.IMG_URL
 import com.squareup.picasso.Picasso
 
-@BindingAdapter( "app:imageUrl", "app:errorImage" )
-fun loadImage(view: AppCompatImageView?, url: String?, errorDrawable: Drawable) {
-    if(!url.isNullOrEmpty()){
+@BindingAdapter( "imageUrl", "errorImage" )
+fun loadImage(view: AppCompatImageView, url: String, errorDrawable: Drawable) {
+    if(url.isNotEmpty()) {
         Picasso.get()
-            .load(IMG_URL+url)
-            .placeholder(R.drawable.ic_image_not_supported)
+            .load(IMG_URL + url)
+
             .error(errorDrawable)
             .into(view)
     }
 
 }
+
 
