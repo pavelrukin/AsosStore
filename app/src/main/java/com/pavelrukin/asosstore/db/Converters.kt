@@ -16,17 +16,17 @@ class Converters {
     @TypeConverter
     fun fromJsonToMedia(jsonMedia: String): Media? {
         val type = object : TypeToken<Media?>() {}.type
-        return Gson().fromJson<Media?>(jsonMedia, type)
+        return Gson().fromJson<Media>(jsonMedia, type)
     }
     
     @TypeConverter
-        fun fromImageToJson(stat: Image?): String {
+        fun fromImageToJson(stat: List<Image>?): String {
         return Gson().toJson(stat)
     }
     @TypeConverter
-    fun fromJsonToImage(jsonImages: String): Image? {
-        val type = object : TypeToken<Image?>() {}.type
-        return Gson().fromJson<Image?>(jsonImages, type)
+    fun fromJsonToImage(jsonImages: String): List<Image>? {
+        val type = object : TypeToken<List<Image?>>() {}.type
+        return Gson().fromJson<List<Image>>(jsonImages, type)
     }
     
     @TypeConverter
@@ -34,7 +34,7 @@ class Converters {
         return Gson().toJson(stat)
     }
     @TypeConverter
-    fun fromJsonToInfo(jsonInfo: String): Info? {
+    fun fromJsonToInfo(jsonInfo: String): Info?? {
         val type = object : TypeToken<Info?>() {}.type
         return Gson().fromJson<Info?>(jsonInfo, type)
     }

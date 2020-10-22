@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.pavelrukin.asosstore.AsosStoreApp
 import com.pavelrukin.asosstore.model.detail_product.DetailResponse
-import com.pavelrukin.asosstore.model.product.ProductResponse
 import com.pavelrukin.asosstore.repository.ProductRepository
 import com.pavelrukin.asosstore.utils.Resource
 import com.pavelrukin.asosstore.utils.extensions.isConnected
@@ -14,24 +13,52 @@ import kotlinx.coroutines.launch
 import retrofit2.Response
 import java.io.IOException
 
+
 class DetailViewModel(private val repository: ProductRepository, app: AsosStoreApp) :
     AndroidViewModel(app) {
+    private val TAG = "DetailViewModel"
+
 
     val detailProduct: MutableLiveData<Resource<DetailResponse>> = MutableLiveData()
     var detailProductResponse: DetailResponse? = null
-fun saveProduct() = saveProduct(product = DetailResponse())
+
+    fun btnPlus(product: DetailResponse) = viewModelScope.launch {
+        product.productCount++
+      product.priceCounting = product.priceCounting?.plus(product.productPrice!!)
+        update(product)
+    }
+
+    fun btnMinus(product: DetailResponse) = viewModelScope.launch {
+        product.productCount--
+        product.priceCounting = product.priceCounting?.minus(product.productPrice!!)
+        update(product)
+    }
+
+    suspend fun update(product: DetailResponse) = viewModelScope.launch {
+        repository.updateCount(product)
+    }
+
     fun saveProduct(product: DetailResponse) = viewModelScope.launch {
-        repository.upsert(product)
-    //    isFavorite.value = true
+        product.productCount = 1
+        product.productPrice = product.priceDetail?.current?.value
+        product.priceCounting = product.priceDetail?.current?.value
+
+        repository.insert(product)
+
+
+        //    isFavorite.value = true
         Log.d("DetailViewModel", "saveProduct: $product")
     }
 
     fun getSavedProduct() = repository.getSavedProduct()
 
+
     fun deleteProduct(product: DetailResponse) = viewModelScope.launch {
         repository.deleteProduct(product)
-     //   isFavorite.value = false
+        Log.d("DetailViewModel", "deleteProduct: $product")
+        //   isFavorite.value = false
     }
+
     fun getProductList(id: Int) = viewModelScope.launch {
         detailProduct.postValue(Resource.Loading())
         try {
@@ -64,4 +91,7 @@ fun saveProduct() = saveProduct(product = DetailResponse())
         }
         return Resource.Error(response.message())
     }
+
+
 }
+

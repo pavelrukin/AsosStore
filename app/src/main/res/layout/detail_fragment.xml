@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="product_detail"
+            name="productDetail"
             type="com.pavelrukin.asosstore.model.detail_product.DetailResponse" />
 
         <variable
@@ -24,8 +24,18 @@
             android:layout_height="match_parent"
             tools:context=".ui.detail.DetailFragment">
 
+            <include
+                android:id="@+id/progress_bar_detail"
+                layout="@layout/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/detail_image"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,14 +59,14 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="@{product_detail.name}"
+                android:text="@{productDetail.name}"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/detail_image"
                 tools:text="Under Armour HOVR Start sneakers in black" />
-
+          <!--  android:text="@{product_detail.priceDetail}"-->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_price"
                 android:layout_width="wrap_content"
@@ -64,7 +74,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@{product_detail.priceDetail.current.text}"
+
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,12 +128,12 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
-                android:onClick="@{() -> viewModel.saveProduct()}"
+                android:onClick="@{() -> viewModel.saveProduct(productDetail)}"
                 android:src="@drawable/ic_baseline_add_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_detail_product" />
-
+          <!--  android:onClick="@{() -> viewModelDetail.save(photo)}"-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -32,8 +32,10 @@ class MainAdapter(private val clickListener: (Product) -> Unit) :
         val inflater = LayoutInflater.from(parent.context)
         val binding: ItemListProductBinding = DataBindingUtil.inflate(
             inflater,
+
             R.layout.item_list_product, parent, false
         )
+
         return MovieViewHolder(binding)
     }
 
