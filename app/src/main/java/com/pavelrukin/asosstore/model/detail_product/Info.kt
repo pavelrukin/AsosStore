@@ -2,7 +2,6 @@ package com.pavelrukin.asosstore.model.detail_product
 
 
 import androidx.room.ColumnInfo
-import androidx.room.Ignore
 import com.google.gson.annotations.SerializedName
 
 data class Info(
@@ -12,7 +11,4 @@ data class Info(
     @ColumnInfo(name = "careInfo")
     @SerializedName("careInfo")
     val careInfo: String, // Wipe clean with a soft dry cloth
-    @Ignore
-    @SerializedName("sizeAndFit")
-    val sizeAndFit: Any // null
 )

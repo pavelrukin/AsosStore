@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-   <data>
+    <data>
+
         <import type="android.view.View" />
 
 
-       <variable
-           name="count"
-           type="String" />
-       <variable
-           name="price"
-           type="String" />
-       <variable
-            name="viewModel"
-            type="com.pavelrukin.asosstore.ui.detail.DetailViewModel" />
+        <variable
+            name="count"
+            type="String" />
+
+        <variable
+            name="price"
+            type="String" />
+
         <variable
             name="product"
             type="com.pavelrukin.asosstore.model.detail_product.DetailResponse" />
@@ -34,8 +34,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -49,7 +48,6 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
-
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,34 +55,39 @@
                     android:id="@+id/tv_title_basket"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:ellipsize="marquee"
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:gravity="center_horizontal"
-
                     android:marqueeRepeatLimit="marquee_forever"
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:text="@{product.name}"
                     android:textAlignment="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="26sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/basket"
                     app:layout_constraintTop_toTopOf="@+id/basket"
                     tools:text="Under Armour HOVR Start sneakers in black" />
-         <!--       android:text="@{product.priceDetail.current.text}"-->
+
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_price_basket"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="24dp"
-android:text="@{price}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:text="@{'$' + price}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="26sp"
                     app:layout_constraintStart_toEndOf="@+id/basket"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_basket"
-                    tools:text="pirce 35$" />
+                    tools:text="$239.0" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_plus"
@@ -116,9 +119,10 @@ android:text="@{price}"
                     android:id="@+id/tv_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{count}"
                     android:gravity="center"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:text="@{count}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_plus"
                     app:layout_constraintEnd_toStartOf="@+id/btn_minus"
                     app:layout_constraintStart_toEndOf="@+id/btn_plus"
@@ -132,8 +136,9 @@ android:text="@{price}"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
+                    android:layout_marginBottom="16dp"
                     android:src="@drawable/ic_baseline_delete_forever_24"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_price_basket"
+                    app:layout_constraintBottom_toTopOf="@+id/btn_minus"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_basket" />
             </androidx.constraintlayout.widget.ConstraintLayout>

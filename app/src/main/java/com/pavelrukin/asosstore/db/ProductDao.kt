@@ -11,17 +11,10 @@ interface ProductDao {
     @Update(entity = DetailResponse::class)
     suspend fun updateCount (product: DetailResponse)
 
-
-
     @Query("SELECT * FROM product WHERE product.id = :id")
     suspend fun getProduct(id: Int): DetailResponse?
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(product: DetailResponse)
-
-  /*  @Insert
-    suspend fun insertCountProduct(productCount: DetailResponse )
-    @Delete
-    suspend fun deleteCountProduct(product: DetailResponse)*/
 
     @Query("SELECT *FROM product")
     fun getAllProducts(): LiveData<List<DetailResponse>>

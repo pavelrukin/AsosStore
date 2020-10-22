@@ -37,7 +37,7 @@
             <ImageView
                 android:id="@+id/detail_image"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +47,7 @@
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+android:textSize="26sp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="8dp"
@@ -61,26 +61,26 @@
                 android:singleLine="true"
                 android:text="@{productDetail.name}"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toBottomOf="@+id/detail_image"
                 tools:text="Under Armour HOVR Start sneakers in black" />
-          <!--  android:text="@{product_detail.priceDetail}"-->
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_price"
+                android:textSize="26sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title"
                 tools:text="pirce 35$" />
-            <!--android:text="@{product_detail.info.aboutMe}"-->
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_about_me"
                 android:layout_width="wrap_content"
@@ -107,8 +107,8 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+android:textSize="28sp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.482"
                 app:layout_constraintStart_toStartOf="parent"

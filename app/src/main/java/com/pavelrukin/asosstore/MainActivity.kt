@@ -7,7 +7,7 @@ import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
-import com.pavelrukin.asosstore.ui.main.MainFragment
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController

@@ -24,7 +24,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class DetailFragment : Fragment() {
-    val TAG = "DetailFragment"
     val args: DetailFragmentArgs by navArgs()
     private lateinit var binding: DetailFragmentBinding
     private val viewModel: DetailViewModel by viewModel()
@@ -48,7 +47,6 @@ class DetailFragment : Fragment() {
         fetchDetailProduct()
         detaiAdapter = DetailAdapter()
 
-
     }
 
     fun initView(result: DetailResponse) {
@@ -63,7 +61,6 @@ class DetailFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
         detaiAdapter.differ.submitList(result.media?.images )
-
 
     }
 

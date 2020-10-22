@@ -4,11 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-<variable
-    name="viewModel"
-    type="com.pavelrukin.asosstore.ui.detail.DetailViewModel" />
-
-
         <variable
             name="totalAmount"
             type="String" />
@@ -20,25 +15,40 @@
         tools:context=".ui.basket.BasketFragment">
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:id="@+id/tv_total"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:text="@{totalAmount}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="26sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_total_text"
+            app:layout_constraintTop_toTopOf="@+id/tv_total_text"
+            tools:text="$230.90" />
+
+        <TextView
+            android:id="@+id/tv_total_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/total"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="26sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_basket"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            tools:listitem="@layout/item_basket"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_total" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
