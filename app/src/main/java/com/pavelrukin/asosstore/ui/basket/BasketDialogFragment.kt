@@ -42,7 +42,7 @@ class BasketDialogFragment : DialogFragment() {
 
 
     private fun initList() {
-        viewModel.getSavedProduct().observe(viewLifecycleOwner, Observer { result ->
+        viewModel.getSavedProduct().observe(viewLifecycleOwner, { result ->
             basketAdapter.differ.submitList(result)
             binding.totalAmount =
                 "$" + result.map { it.priceCounting }.sumByDouble { it!! }.toString()
@@ -55,7 +55,7 @@ class BasketDialogFragment : DialogFragment() {
         binding.rvBasket.apply {
             adapter = basketAdapter
             layoutManager = LinearLayoutManager(activity)
-          //  disableItemAnimator()
+            disableItemAnimator()
         }
     }
 
@@ -66,12 +66,10 @@ class BasketDialogFragment : DialogFragment() {
             viewModel.btnMinus(product)
         }
 
-        Log.d("BasketFragment", "MINUS: onclick")
     }
 
     private fun basketPlusProduct(detailResponse: DetailResponse) {
         viewModel.btnPlus(detailResponse)
-        Log.d("BasketFragment", "PLUS: onclick")
     }
 
     private fun deleteBasketItem(product: DetailResponse) {
