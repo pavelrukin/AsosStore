@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
             navController.addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
-                    R.id.basketFragment -> supportActionBar?.hide()
+                   // R.id.basketFragment -> supportActionBar?.hide()
                     else -> supportActionBar?.show()
                 }
             }

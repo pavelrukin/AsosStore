@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.pavelrukin.asosstore.R
@@ -47,6 +49,9 @@ class DetailFragment : Fragment() {
         fetchDetailProduct()
         detaiAdapter = DetailAdapter()
 
+        fab_to_list.setOnClickListener {
+            findNavController().navigate(R.id.action_detailFragment_to_mainFragment)
+        }
     }
 
     fun initView(result: DetailResponse) {
@@ -92,9 +97,12 @@ class DetailFragment : Fragment() {
     }
     private fun hideFab(){
         fab_add_product.visibility = View.INVISIBLE
+        fab_to_list.visibility = View.INVISIBLE
+
     }
     private fun showFab(){
         fab_add_product.visibility = View.VISIBLE
+        fab_to_list.visibility = View.VISIBLE
     }
     private fun hideProgressBar() {
     progress_bar_detail.visibility = View.INVISIBLE

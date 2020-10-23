@@ -10,39 +10,34 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         tools:context=".ui.basket.BasketFragment">
 
         <TextView
             android:id="@+id/tv_total"
-            android:layout_width="140dp"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:text="@{totalAmount}"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+
+            android:layout_marginRight="24dp"
+            android:text="@{ totalAmount}"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="26sp"
-            app:layout_constraintStart_toEndOf="@+id/tv_total_text"
-            app:layout_constraintTop_toTopOf="@+id/tv_total_text"
+            app:layout_constraintEnd_toEndOf="parent"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="$230.90" />
 
-        <TextView
-            android:id="@+id/tv_total_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/total"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="26sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_basket"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="400dp"
             tools:listitem="@layout/item_basket"
             android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
